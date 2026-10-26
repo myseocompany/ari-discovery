@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ari.local/discovery/brief.schema.json",
+  "title": "DiscoveryBrief",
+  "type": "object",
+  "required": ["contract_version", "client_id", "engagement_id", "status", "objective", "decision_to_make", "scope", "success_criteria", "constraints", "available_evidence", "missing_information", "ambiguities"],
+  "properties": {
+    "contract_version": { "const": "1.0.0" },
+    "client_id": { "type": "string", "minLength": 1 },
+    "engagement_id": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "needs_clarification", "approved"] },
+    "objective": { "type": "string" },
+    "decision_to_make": { "type": "string" },
+    "scope": {
+      "type": "object",
+      "required": ["included", "excluded"],
+      "properties": {
+        "included": { "type": "array", "items": { "type": "string" } },
+        "excluded": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "success_criteria": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "available_evidence": { "type": "array", "items": { "type": "string" } },
+    "missing_information": { "type": "array", "items": { "type": "string" } },
+    "ambiguities": { "type": "array", "items": { "type": "string" } },
+    "approved_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "additionalProperties": false
+}
